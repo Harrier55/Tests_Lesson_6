@@ -1,5 +1,6 @@
 package com.geekbrains.tests.view.search
 
+
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -15,32 +16,29 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest {
+class MainActivityTestMyTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun mainActivityTest() {
-        onView(
+    fun mainActivityTestMyTest() {
+        val materialButton = onView(
             allOf(withId(R.id.toDetailsActivityButton), isDisplayed())
-        ).apply {
-            perform(click())
-        }
+        )
+        materialButton.perform(click())
 
-        onView(
-            allOf(withId(R.id.incrementButton), isDisplayed())
-        ).apply {
-            perform(click())
-        }
+        val materialButton2 = onView(
+            allOf(withId(R.id.decrementButton), isDisplayed())
+        )
+        materialButton2.perform(click())
+        materialButton2.perform(click())
 
-        onView(
+
+        val textView = onView(
             allOf(withId(R.id.totalCountTextView), isDisplayed())
-        ).apply {
-            check(matches(withText("Number of results: 1")))
-        }
-
+        )
+        textView.check(matches(withText("Number of results: -2")))
     }
-
 }
